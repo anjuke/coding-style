@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN" "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
+<module name="Checker">
+    <property name="charset" value="UTF-8"/>
+    <property name="severity" value="warning" />
+    <module name="TreeWalker">
+        <module name="ConstantName">
+            <property name="applyToPrivate" value="false" />
+        </module>
+        <module name="LocalFinalVariableName" />
+        <module name="LocalVariableName" />
+        <module name="MemberName">
+            <property name="format" value="^_[a-z][a-zA-Z0-9]*$" />
+            <property name="applyToPublic" value="false" />
+            <property name="applyToProtected" value="false" />
+        </module>
+        <module name="MethodName" />
+        <module name="PackageName" />
+        <module name="ParameterName" />
+        <module name="StaticVariableName">
+            <property name="format" value="^_[a-z][a-zA-Z0-9]*$" />
+            <property name="applyToPublic" value="false" />
+            <property name="applyToProtected" value="false" />
+        </module>
+        <module name="TypeName" />
+        <module name="AvoidStarImport" />
+        <module name="IllegalImport" />
+        <module name="RedundantImport" />
+        <module name="UnusedImports" />
+        <module name="MethodLength" />
+        <module name="ParameterNumber" />
+        <module name="EmptyForIteratorPad" />
+        <module name="MethodParamPad" />
+        <module name="NoWhitespaceAfter" />
+        <module name="NoWhitespaceBefore" />
+        <module name="OperatorWrap" />
+        <module name="ParenPad" />
+        <module name="TypecastParenPad" />
+        <module name="WhitespaceAfter">
+            <property name="tokens" value="COMMA, SEMI" />
+        </module>
+        <module name="WhitespaceAround">
+            <property name="tokens" value="ASSIGN" />
+        </module>
+        <module name="RedundantModifier" />
+        <module name="AvoidNestedBlocks" />
+        <module name="EmptyBlock" />
+        <module name="LeftCurly" />
+        <module name="NeedBraces" />
+        <module name="RightCurly" />
+        <module name="AvoidInlineConditionals" />
+        <module name="DoubleCheckedLocking" />
+        <module name="EmptyStatement" />
+        <module name="EqualsHashCode" />
+        <module name="HiddenField" />
+        <module name="IllegalInstantiation" />
+        <module name="InnerAssignment" />
+        <module name="MagicNumber" />
+        <module name="MissingSwitchDefault" />
+        <module name="RedundantThrows" />
+        <module name="SimplifyBooleanExpression" />
+        <module name="SimplifyBooleanReturn" />
+        <module name="FinalClass" />
+        <module name="HideUtilityClassConstructor" />
+        <module name="InterfaceIsType" />
+        <module name="VisibilityModifier">
+            <property name="packageAllowed" value="true" />
+            <property name="protectedAllowed" value="true" />
+        </module>
+        <module name="ArrayTypeStyle" />
+        <module name="TodoComment" />
+        <module name="UpperEll" />
+        <module name="LineLength">
+            <property name="max" value="120" />
+        </module>
+        <module name="Regexp">
+            <property name="format" value=" * Copyright 2012 Anjuke Inc."/>
+            <property name="duplicateLimit" value="0"/>
+        </module>
+        <module name="Regexp">
+            <property name="format" value="System\.out\.println"/>
+            <property name="illegalPattern" value="true"/>
+            <property name="ignoreComments" value="true"/>
+        </module>
+        <module name="Regexp">
+            <property name="format" value="[ \t]+$"/>
+            <property name="illegalPattern" value="true"/>
+            <property name="message" value="Trailing whitespace"/>
+        </module>
+    </module>
+    <module name="FileLength" />
+    <module name="FileTabCharacter" />
+    <module name="RegexpSingleline">
+        <property name="format" value="\s+$" />
+    </module>
+    <module name="NewlineAtEndOfFile">
+        <property name="lineSeparator" value="lf"/>
+    </module>
+    <module name="Translation" />
+</module>
