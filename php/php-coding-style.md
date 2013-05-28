@@ -96,16 +96,18 @@ class FooBar {
 ?>
 ```
 
- * 在(P)HTML模板里推荐使用`short_open_tag`
+ * 在(P)HTML模板里输出变量时推荐使用`<?= ?>`，其他情况仍使用`<?php ?>`。
     * **注意，需要打开`php.ini`里`short_open_tag`的选项**
     * PHP 5.4开始 `<?= ?>`的用法和`short_open_tag`选项无关可以直接使用
 
 ```phtml
 <!-- 正确 -->
 <?= $foo ?>
+<?php $bar = 1; ?>
 
 <!-- 错误 -->
 <?php echo $foo ?>
+<? $bar = 1; ?>
 ```
 
 ### Braces
