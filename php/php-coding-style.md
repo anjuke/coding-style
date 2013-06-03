@@ -150,6 +150,22 @@ foo ( $a,$b,$c );
 $i=($j<5)?$j:5;
 ```
 
+### Quotes
+
+  * 缺省 **使用单引号**
+  * ***需要转义或内嵌变量时*** **使用双引号**
+
+```php
+<?php
+// 正确
+echo 'Hello, World!';
+echo "Hello, {$name}";
+
+// 错误
+echo "Hello, World!";
+echo 'Hello, ' . $name;
+```
+
 ### SQL
 SQL关键字使用大写，数据库对象使用小写。
 
@@ -161,4 +177,4 @@ SELECT id, name FROM foobar WHERE updated < :updated ORDER BY display_order;
 一行不要太长到难以阅读。
 
 ### Comment
-需求提供给其他开发人员调用的代码，建议使用phpdoc格式的注释，特别是函数的返回类型。
+提供给其他开发人员调用的代码，建议使用phpdoc格式的注释，特别是函数的返回类型。
