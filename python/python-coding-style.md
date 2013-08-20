@@ -93,7 +93,7 @@ if foo == 'blah': do_blash_thing()
 
 ```python
 class A:
-    “”“This is a simple docstring."""
+    """This is a simple docstring."""
 
     def __init__(self):
         pass
