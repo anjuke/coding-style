@@ -1,6 +1,5 @@
 # 安居客 Objective-C 代码风格
-目前直接采用 NYTimes Objective-C Style Guide
-link：[传送门](https://github.com/NYTimes/objective-c-style-guide)
+目前直接采用 NYTimes Objective-C Style Guide   [传送门](https://github.com/NYTimes/objective-c-style-guide)
 
 
 
