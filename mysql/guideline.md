@@ -16,13 +16,26 @@ SELECT id, title FROM xiaoqu WHERE id = 1
 
 ## 表的设计
 
-### 存储引擎使用 innoDB
+### MySQL 存储引擎使用 InnoDB
+
+不用纠结，没有特殊原因的情况下，作为 OLTP 的 MySQL 使用 InnoDB 引擎。
 
 ### 字符集使用 UTF-8
 
-### 不使用字符串存储时间
+Charset 为 `utf8`；Collation 为 `utf8_general_ci`。
 
-### 不使用 FLOAT DOUBLE
+### 正确使用时间类型
+
+MySQL 应当正确设置 time_zone。
+
+- 精确到秒的时间采用 `TIMESTAMP`
+- 精确到日期使用 `DATE`
+- 一般不使用 `DATETIME` 类型
+- **不允许使用字符串类型存储时间**
+
+### 不使用浮点类型，FLOAT、DOUBLE
+
+一般情况下，不需要存储浮点数。例如金额可以用分为单位，然后采用 INTEGER，或者依然以元为单位，采用 DECIMAL。
 
 ### 字段个数不超过 30 个
 
