@@ -1,6 +1,6 @@
 # MySQL 使用规范
 
-以下规范针对在线交易（OLTP）系统的数据库。数据仓库与分析系统也可以参考。
+以下规范适用在线交易（OLTP）系统的数据库。数据仓库与分析系统也可以参考。
 
 ## 命名规范
 
@@ -11,7 +11,7 @@
 - 不使用保留字
 
 - 存储实体表间多对多对应关系的表，名称建议采用 `noun_verb_noun` 这样的模式。例如：  
-  `member_like_property`、`property_has_tag`、
+  `member_like_property`、`property_has_tag`。
 
 SQL 语句中，
 
@@ -92,6 +92,8 @@ SELECT id, title FROM xiaoqu WHERE areacode = "000100010001"
 ### 不使用联合主键
 
 > 存储实体数据的表，不使用联合主键。
+>
+> 存储实体表间多对多对应关系的表（仅有两个字段）允许例外。
 
 ### 不使用外键
 
@@ -163,10 +165,10 @@ SELECT id, title FROM xiaoqu WHERE areacode = "000100010001"
 
 > OLTP 不使用 `JOIN` 联合查询。
 
-### 避免使用子查询
+### 不使用子查询
 
 > 没有特别好的理由，OLTP 不允许使用子查询。
 
-### 避免使用负向查询
+### 不使用负向查询
 
 > 负向查询是指，如果查询条件描述的是不要什么数据，其余的都要。例如 `!=`、`<>`、`NOT EXISTS`、`NOT IN` 以及 `NOT LIKE` 等就是负向查询，它们利用索引将会很辛苦。
