@@ -67,20 +67,19 @@ SELECT id, title FROM xiaoqu WHERE areacode = "000100010001"
 
 > 请使用分布式文件系统来存储图片、音频、视频等内容。数据库里只存储文件的位置。
 
-### 使用 INT UNSIGNED 来存储IPv4 地址
+### 使用 INT UNSIGNED 来存储 IPv4 地址
 
-> 使用 `INET_ATON` 或者程序自带的函数将 IP 地址转换成数字。
+> 使用 `INET_ATON` 将 IP 地址的字符串形式转换成数字形式；使用 `INET_NTOA` 将 IP 地址数字形式转换成字符串形式，以便查看。
+>
+> 当要查询某段的 IP 时，请参考以下示例：
+>
+> ```sql
+> SELECT user_id FROM user_ip
+> WHERE ip > INET_ATON('192.168.0.0') AND ip < INET_ATON('192.168.255.255')
+> ```
+>
+> 当程序使用自带的函数进行 IP 地址的字符串形式与数字形式之间的转换时，需要注意数字的存储类型至少应为 32 位的无符号整型（如 `uint32_t`)，并注意字节顺。
 
-> 使用 `INET_NTOA` 或者程序自带的函数将数字转换成 IP 地址以便查看。
-
-> 当要查询某段的 IP 时，请参考以下查询：
-
-```
-
-SELECT user_id FROM user_ip 
-WHERE ip > INET_ATON('192.168.0.0') AND ip < INET_ATON('192.168.255.255')
-
-```
 
 ## 索引
 
