@@ -70,7 +70,9 @@ SELECT id, title FROM xiaoqu WHERE areacode = "000100010001"
 ### 使用 INT UNSIGNED 来存储IPv4 地址
 
 > 使用 `INET_ATON` 或者程序自带的函数将 IP 地址转换成数字。
+
 > 使用 `INET_NTOA` 或者程序自带的函数将数字转换成 IP 地址以便查看。
+
 > 当要查询某段的 IP 时，请参考以下查询：
 
 ```
