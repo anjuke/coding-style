@@ -103,6 +103,7 @@ SELECT id, title FROM xiaoqu WHERE areacode = "000100010001"
 
 > 对字符串类型的字段建立索引，采用前缀索引，且长度不超过 8 个字符。
 
+
 ## SQL 语句
 
 ### 禁止在查询条件中对字段进行数学运算、函数调用、隐式类型转换
@@ -147,6 +148,15 @@ SELECT id, title FROM xiaoqu WHERE areacode = "000100010001"
 > UPDATE property SET status = 1 WHERE id = 43
 > ```
 
+### 禁止使用 % 前导查询
+
+> 尽量不使用 `LIKE` 查询，不得不用的情况下也禁止使用 `%` 前导查询。
+>
+> ```sql
+> -- 禁止
+> SELECT id FROM property WHERE title LIKE '%最%'
+> ```
+
 ### 不使用联表查询
 
 > OLTP 不使用 `JOIN` 联合查询。
@@ -158,12 +168,3 @@ SELECT id, title FROM xiaoqu WHERE areacode = "000100010001"
 ### 避免使用负向查询
 
 > 负向查询是指，如果查询条件描述的是不要什么数据，其余的都要。例如 `!=`、`<>`、`NOT EXISTS`、`NOT IN` 以及 `NOT LIKE` 等就是负向查询，它们利用索引将会很辛苦。
-
-### 禁止使用 % 前导查询
-
-> 尽量不使用 `LIKE` 查询，不得不用的情况下也禁止使用 `%` 前导查询。
->
-> ```sql
-> -- 禁止
-> SELECT id FROM property WHERE title LIKE '%最%'
-> ```
