@@ -172,3 +172,27 @@ SELECT id, title FROM xiaoqu WHERE areacode = "000100010001"
 ### 不使用负向查询
 
 > 负向查询是指，如果查询条件描述的是不要什么数据，其余的都要。例如 `!=`、`<>`、`NOT EXISTS`、`NOT IN` 以及 `NOT LIKE` 等就是负向查询，它们利用索引将会很辛苦。
+
+### 一次查询的结果集不超过 100 行
+
+> 必要时使用 `LIMIT 100`
+
+### LIMIT m, n，其中 m 应当小于 500
+
+> 使用 `SELECT ... LIMIT offset, row_count` 或者 `SELECT ... LIMIT row_count OFFSET offset` 时，当 offset 小于 500 时，允许使用。
+>
+> ```sql
+> -- 允许
+> SELECT ... FROM property WHERE broker_id=? ORDER BY update_time LIMIT 40, 20
+> -- 不允许
+> SELECT ... FROM property WHERE areacode=? ORDER BY update_time LIMIT 4000, 20
+> ```
+>
+> 能够不使用 offset 的情况应当避免，如下面的例子（其中 id 是主键），
+>
+> ```sql
+> -- 建议
+> SELECT ... FROM property WHERE broker_id=? AND id>? ORDER BY id LIMIT 20
+> -- 避免
+> SELECT ... FROM property WHERE broker_id=? ORDER BY id LIMIT 40, 20
+> ```
