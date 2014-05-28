@@ -10,7 +10,7 @@
 - 索引名称采用 `idx_` 前缀，之后顺序跟随索引的字段名，字段名直接以下划线分割
 - 不使用保留字
 
-- 存储实体表间多对多对应关系的表，名称建议采用 `noun_verb_noun` 这样的模式。例如：  
+- 存储实体表间多对多对应关系的表，名称建议采用 `noun_verb_noun` 这样的模式。例如：
   `member_like_property`、`property_has_tag`。
 
 SQL 语句中，
@@ -196,3 +196,38 @@ SELECT id, title FROM xiaoqu WHERE areacode = "000100010001"
 > -- 避免
 > SELECT ... FROM property WHERE broker_id=? ORDER BY id LIMIT 40, 20
 > ```
+
+### 避免使用 COUNT() 函数
+
+> 能不使用就不使用，尽量用其他方法来解决。
+>
+> 例如判断经纪人是否有房源，可以不使用 `COUNT()` 函数，
+>
+> ```
+> -- 正确
+> SELECT 1 FROM propertys WHERE broker_id=? LIMIT 1
+>
+> -- 错误
+> SELECT COUNT(*) FROM propertys WHERE broker_id=?
+> ```
+
+### 一次 COUNT() 可能扫描的行数应当确保小于 500 行
+
+> `COUNT()` 函数需要扫描所有的结果集之后才能得出结果。而结果集的大小需要业务知识来判断（`EXPLAIN` 方法只能来来检验某一个条件下的当前情况）。因此需要使用 `COUNT()` 查询的代码应当经过审阅。
+>
+> ```sql
+> -- 允许。审阅。经纪人的房源数不允许超过 200 套
+> SELECT COUNT(*) FROM property WHERE broker_id=?
+>
+> -- 不允许。一个区域板块下的房源数量不定，可能非常多
+> SELECT COUNT(*) FROM property WHERE areacode=?
+> ```
+>
+> 其他聚合函数，例如 `SUM()`、`AVG()`、`MAX()` 等，同样适用。
+
+### 统一使用 COUNT(*) 而不是 COUNT(1)
+
+> 当统计行数时，
+>
+> - 统一使用 `COUNT(*)` 而不是 `COUNT(1)`。
+> - 不使用 `COUNT(PK)` 或 `COUNT(column)`，除非真的是想统计 Nullable 字段的行数。
