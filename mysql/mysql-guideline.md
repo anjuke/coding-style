@@ -202,7 +202,7 @@ SELECT id, title FROM xiaoqu WHERE areacode = "000100010001"
 >
 > 例如判断经纪人是否有房源，可以不使用 `COUNT()` 函数，
 >
-> ```
+> ```sql
 > -- 正确
 > SELECT 1 FROM propertys WHERE broker_id=? LIMIT 1
 >
