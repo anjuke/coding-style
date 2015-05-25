@@ -360,4 +360,4 @@ Function and method arguments:
 
 ## 编码
 * 文件使用UTF-8编码
-* 文件头部加入`#-*-conding:utf-8-*-`标识
+* 文件头部加入`#-*-coding:utf-8-*-`标识
